@@ -11,14 +11,13 @@ app.use(express.json());
 
 // DB connection
 const db = mysql.createConnection({
-  host: process.env.DB_HOST || "localhost",
-  user: process.env.DB_USER || "root",
-  password: process.env.DB_PASSWORD || "raja@123",
-  database: process.env.DB_NAME || "todo_db",
-  port: process.env.DB_PORT || 3307, // because you mapped 3307:3306
+  host: process.env.DB_HOST ,
+  user: process.env.DB_USER ,
+  password: process.env.DB_PASSWORD ,
+  database: process.env.DB_NAME ,
+  port: process.env.DB_PORT 
 });
 
-// Test DB connection
 db.connect((err) => {
   if (err) {
     console.error("DB connection failed:", err);
@@ -27,7 +26,6 @@ db.connect((err) => {
   console.log("✅ Connected to MySQL");
 });
 
-// API routes
 app.get("/tasks", (req, res) => {
   db.query("SELECT * FROM tasks", (err, results) => {
     if (err) return res.status(500).json(err);
