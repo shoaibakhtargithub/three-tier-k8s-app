@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dbdeployment
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tododb
+  template:
+    metadata:
+      labels:
+        app: tododb
+    spec:
+      containers:
+        - name: tododb
+          image: mysql:8.0  
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "root"
+            - name: MYSQL_DATABASE
+              value: "todo_db"
