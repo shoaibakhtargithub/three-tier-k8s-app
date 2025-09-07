@@ -26,3 +26,5 @@ spec:
               value: "root"
             - name: DB_NAME
               value: "todo_db"
+            - name: DB_PORT
+              value: "3306" 

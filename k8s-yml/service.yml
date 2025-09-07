@@ -1,3 +1,4 @@
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -8,5 +9,32 @@ spec:
   ports:
     - port: 80
       targetPort: 80
-      nodePort: 30080   # external port
+      nodePort: 30080   # external port for browser
   type: NodePort
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+spec:
+  selector:
+    app: backend1
+  ports:
+    - port: 5000
+      targetPort: 5000
+  type: ClusterIP   # internal, frontend talks to this
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: db-service
+spec:
+  selector:
+    app: tododb
+  ports:
+    - port: 3306
+      targetPort: 3306
+  type: ClusterIP   # internal, backend talks to this
+
