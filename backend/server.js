@@ -23,7 +23,7 @@ db.connect((err) => {
     console.error("DB connection failed:", err);
     return;
   }
-  console.log("✅ Connected to MySQL");
+  console.log(" Connected to MySQL");
 });
 
 app.get("/tasks", (req, res) => {
@@ -46,5 +46,5 @@ app.post("/tasks", (req, res) => {
 });
 
 app.listen(5000, () => {
-  console.log("🚀 Backend running on http://localhost:5000");
+  console.log(" Backend running on http://localhost:5000");
 });
