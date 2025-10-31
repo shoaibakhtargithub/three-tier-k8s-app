@@ -34,7 +34,7 @@ function App() {
 
   return (
     <div style={{ padding: "20px" }}>
-      <h1>✅ ToDo App</h1>
+      <h1> ToDo App</h1>
       <input 
         value={task}
         onChange={(e) => setTask(e.target.value)}
