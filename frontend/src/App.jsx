@@ -7,12 +7,12 @@ function App() {
 
   // Fetch tasks
   useEffect(() => {
-    axios.get("http://localhost:5000/tasks").then(res => setTasks(res.data));
+    axios.get("/tasks").then(res => setTasks(res.data));
   }, []);
 
   // Add Task
   const addTask = () => {
-    axios.post("http://localhost:5000/tasks", { task }).then(res => {
+    axios.post("/tasks", { task }).then(res => {
       setTasks([...tasks, res.data]);
       setTask("");
     });
@@ -20,14 +20,14 @@ function App() {
 
   // Mark Completed
   const completeTask = (id) => {
-    axios.put(`http://localhost:5000/tasks/${id}`).then(() => {
+    axios.put(`/tasks/${id}`).then(() => {
       setTasks(tasks.map(t => t.id === id ? { ...t, status: "completed" } : t));
     });
   };
 
   // Delete Task
   const deleteTask = (id) => {
-    axios.delete(`http://localhost:5000/tasks/${id}`).then(() => {
+    axios.delete(`/tasks/${id}`).then(() => {
       setTasks(tasks.filter(t => t.id !== id));
     });
   };
