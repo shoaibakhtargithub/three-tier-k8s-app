@@ -14,17 +14,32 @@ spec:
     spec:
       containers:
         - name: backend1
-          image: shoaibakhtar003/backend-todo-app:latest   
+          image: shoaibakhtar003/backend-todo-app:latest
           ports:
             - containerPort: 5000
           env:
             - name: DB_HOST
-              value: "db-service"
-            - name: DB_USER
-              value: "root"
-            - name: DB_PASSWORD
-              value: "root"
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: DB_HOST
             - name: DB_NAME
-              value: "todo_db"
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: DB_NAME
             - name: DB_PORT
-              value: "3306" 
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: DB_PORT
+            - name: DB_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: DB_USER
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: DB_PASSWORD 

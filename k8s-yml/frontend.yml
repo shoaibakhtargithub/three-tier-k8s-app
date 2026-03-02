@@ -14,10 +14,13 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: shoaibakhtar003/frontend-todo-app:latest   
+          image: shoaibakhtar003/frontend-todo-app:latest
           ports:
             - containerPort: 80
           env:
             - name: BACKEND_URL
-              value: "http://backend-service:5000"
+              valueFrom:
+                configMapKeyRef:
+                  name: app-config
+                  key: BACKEND_URL
 
